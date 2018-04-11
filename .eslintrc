@@ -1,0 +1,7 @@
+{
+  "parser": "babel-eslint",
+  "extends": "eslint-config-egg",
+  "rules": {
+    "linebreak-style": [2, "windows"]
+  }
+}
