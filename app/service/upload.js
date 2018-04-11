@@ -2,7 +2,7 @@
  * @Author: Kevin Bolton
  * @Date: 2018-02-01 20:46:08
  * @Last Modified by: Kevin Bolton
- * @Last Modified time: 2018-04-04 14:36:28
+ * @Last Modified time: 2018-04-11 21:23:33
  */
 'use strict';
 
@@ -11,13 +11,22 @@ const moment = require('moment');
 
 // 常量
 const { UPDATEFAILTURE, UPDATESUCCESS } = require('../common/consts');
+// 上传存储路径
+const uploadUrl = {
+  upload: '/uploads', // 根目录
+  image: '/images', // 图片目录
+  file: '/files', // 文件目录
+  video: '/videos', // 视频目录
+};
 
 class UploadService extends Service {
   // [图片]
   // 修改个人信息
   async UploadPortraitModel() {
     const { ctx } = this;
-    const url = `/uploads/portrait/${ctx.req.file.filename}`;
+    const url = `${uploadUrl.upload}${uploadUrl.image}/portrait/${
+      ctx.req.file.filename
+    }`;
 
     // helper 函数
     const result = ctx.helper.result();
@@ -67,7 +76,7 @@ class UploadService extends Service {
     const result = ctx.helper.result();
 
     result.data = files.map(item => ({
-      url: `/uploads/article/${item.filename}`,
+      url: `${uploadUrl.upload}${uploadUrl.image}/article/${item.filename}`,
     }));
 
     return result;
@@ -76,7 +85,9 @@ class UploadService extends Service {
   async UploadProductThumbModel() {
     const { ctx } = this;
     const { file } = ctx.req;
-    const url = `/uploads/article/${file.filename}`;
+    const url = `${uploadUrl.upload}${uploadUrl.image}/article/${
+      file.filename
+    }`;
     // console.log(file, 'file');
 
     // helper 函数
@@ -94,7 +105,9 @@ class UploadService extends Service {
   async UploadChannelImageModel() {
     const { ctx } = this;
     const { file } = ctx.req;
-    const url = `/uploads/channel/${file.filename}`;
+    const url = `${uploadUrl.upload}${uploadUrl.image}/channel/${
+      file.filename
+    }`;
     // console.log(files, 'files');
 
     // helper 函数
@@ -112,7 +125,7 @@ class UploadService extends Service {
   async UploadShopImageModel() {
     const { ctx } = this;
     const { file } = ctx.req;
-    const url = `/uploads/shop/${file.filename}`;
+    const url = `${uploadUrl.upload}${uploadUrl.image}/shop/${file.filename}`;
     // console.log(files, 'files');
 
     // helper 函数
@@ -130,7 +143,7 @@ class UploadService extends Service {
   async UploadBrandImageModel() {
     const { ctx } = this;
     const { file } = ctx.req;
-    const url = `/uploads/brand/${file.filename}`;
+    const url = `${uploadUrl.upload}${uploadUrl.image}/brand/${file.filename}`;
     // console.log(files, 'files');
 
     // helper 函数
@@ -149,7 +162,7 @@ class UploadService extends Service {
     const { ctx } = this;
     const { file, body } = ctx.req;
     const weight = parseInt(body.weight, 10);
-    const url = `/uploads/silde/${file.filename}`;
+    const url = `${uploadUrl.upload}${uploadUrl.image}/silde/${file.filename}`;
     // console.log(file, 'file');
 
     // helper 函数
@@ -193,7 +206,7 @@ class UploadService extends Service {
     const { ctx } = this;
     const { file, body } = ctx.req;
     const weight = parseInt(body.weight, 10);
-    const url = `/uploads/adver/${file.filename}`;
+    const url = `${uploadUrl.upload}${uploadUrl.image}/adver/${file.filename}`;
     // console.log(file, 'file');
 
     // helper 函数
@@ -238,7 +251,7 @@ class UploadService extends Service {
     const { file, body } = ctx.req;
     const weight = parseInt(body.weight, 10);
     const url = '/images/default.png';
-    const video = `/videos/home/${file.filename}`;
+    const video = `${uploadUrl.upload}${uploadUrl.video}/home/${file.filename}`;
     // console.log(file, 'file');
 
     // helper 函数

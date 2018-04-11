@@ -2,7 +2,7 @@
  * @Author: Kevin Bolton
  * @Date: 2018-02-01 20:46:08
  * @Last Modified by: Kevin Bolton
- * @Last Modified time: 2018-03-23 00:38:36
+ * @Last Modified time: 2018-04-11 21:38:33
  */
 'use strict';
 
@@ -349,7 +349,7 @@ class ArticleService extends Service {
     };
     if (newThumb) updatefields.thumb = newThumb;
 
-    console.log(updatefields, 'updatefields');
+    // console.log(updatefields, 'updatefields');
     await Article.where(fields)
       .update({ $set: updatefields })
       .exec((err, doc) => {
