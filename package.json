@@ -1,7 +1,7 @@
 {
-  "name": "shulanjiaju",
+  "name": "pptcms",
   "version": "1.0.0",
-  "description": "Base Eggjs Server ShuLanJiaJu CMS",
+  "description": "Base Eggjs Server PPT CMS",
   "private": true,
   "dependencies": {
     "crypto": "^1.0.1",
