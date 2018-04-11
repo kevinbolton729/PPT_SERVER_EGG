@@ -2,7 +2,7 @@
  * @Author: Kevin Bolton
  * @Date: 2018-02-09 11:47:36
  * @Last Modified by: Kevin Bolton
- * @Last Modified time: 2018-02-11 16:05:59
+ * @Last Modified time: 2018-04-11 23:52:00
  */
 'use strict';
 // 常量
@@ -45,6 +45,10 @@ module.exports = () => {
 
     if (url === '/') return;
     if (!body) return;
+    // application/octet-stream
+    if (url.indexOf('/download/') !== -1) {
+      return;
+    }
 
     // 解析并格式化响应的数据
     ctx.body = await parseResJson(body);

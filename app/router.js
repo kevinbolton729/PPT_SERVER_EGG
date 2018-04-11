@@ -26,6 +26,7 @@ module.exports = app => {
     article,
     channel,
     upload,
+    download,
     apply,
     silde,
     adver,
@@ -187,6 +188,10 @@ module.exports = app => {
     uploadVideoHomeOptions.single('homeVideo'),
     upload.uploadHomeVideo
   );
+
+  // 接口 api: download
+  // -- 下载 根据id获取不同文件的下载链接
+  router.get('/api/server/download/:id', download.downloadFile);
 
   // [客户端接口]
   // >> 首页
