@@ -2,7 +2,7 @@
  * @Author: Kevin Bolton
  * @Date: 2018-02-09 11:47:36
  * @Last Modified by: Kevin Bolton
- * @Last Modified time: 2018-04-11 23:52:00
+ * @Last Modified time: 2018-04-13 20:09:16
  */
 'use strict';
 // 常量
@@ -46,7 +46,7 @@ module.exports = () => {
     if (url === '/') return;
     if (!body) return;
     // application/octet-stream
-    if (url.indexOf('/download/') !== -1) {
+    if (url.indexOf('/download/') !== -1 || url.indexOf('/getfile/') !== -1) {
       return;
     }
 
