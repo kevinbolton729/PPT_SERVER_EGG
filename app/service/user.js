@@ -2,7 +2,7 @@
  * @Author: Kevin Bolton
  * @Date: 2018-02-01 20:46:08
  * @Last Modified by: Kevin Bolton
- * @Last Modified time: 2018-04-10 13:44:25
+ * @Last Modified time: 2018-04-13 14:37:29
  */
 'use strict';
 
@@ -138,7 +138,9 @@ class UserService extends Service {
       // 执行 model
       const { User } = ctx.model;
 
+      // console.log(fields, 'fields');
       await User.findOne(fields).exec((err, doc) => {
+        // console.log(doc, 'doc');
         if (err) {
           result.data = formatError();
         } else if (doc) {

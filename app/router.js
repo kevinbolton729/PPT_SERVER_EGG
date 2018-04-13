@@ -190,7 +190,8 @@ module.exports = app => {
   );
 
   // 接口 api: download
-  // -- 下载 根据id获取不同文件的下载链接
+  // -- 获取 根据id获取不同文件的下载链接
+  router.get('/api/server/getfile/:id', download.getFile);
   router.get('/api/server/download/:id', download.downloadFile);
 
   // [客户端接口]
