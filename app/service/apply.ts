@@ -117,5 +117,3 @@ export default class ApplyService extends Service {
     return result;
   }
 }
-
-module.exports = ApplyService;

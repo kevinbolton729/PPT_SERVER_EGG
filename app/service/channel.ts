@@ -6,7 +6,7 @@
  */
 "use strict";
 
-import { Service } from "egg";
+import { Ichannel, Ishare, Service } from "egg";
 
 // 第三方库类
 const moment = require("moment");
@@ -47,7 +47,7 @@ export default class ChannelService extends Service {
     };
     const sort = { updateDate: -1 }; // 排序 升序: 1 降序: -1
 
-    const csid = [];
+    const csid: Ishare["csid"] = [];
 
     await Channel.where(filters)
       .find(fields)
@@ -99,8 +99,8 @@ export default class ChannelService extends Service {
     const fields = {}; // 查询字段集
     const filters = {}; // 筛选字段集
     const sort = { channelId: -1 }; // 排序 升序: 1 降序: -1
-    const csid = [];
-    const resultArr = [];
+    const csid: Ishare["csid"] = [];
+    const resultArr: Ishare["arr"] = [];
 
     await Channel.where(filters)
       .find(fields)
@@ -116,7 +116,15 @@ export default class ChannelService extends Service {
               csid.concat(item.channelSiteId.split(",")).indexOf(siteId) !== -1
           );
           // 获取所有栏目隐射表
-          for (let i = 0; i < arr.length; i += 1) {
+          // for (let i = 0; i < arr.length; i += 1) {
+          //   if (arr[i].channelStatus !== 0) {
+          //     resultArr.push({
+          //       channelid: arr[i]._id,
+          //       name: arr[i].channelName
+          //     });
+          //   }
+          // }
+          for (let i in arr) {
             if (arr[i].channelStatus !== 0) {
               resultArr.push({
                 channelid: arr[i]._id,
@@ -191,7 +199,7 @@ export default class ChannelService extends Service {
     } = ctx.request.body;
     const fields = { _id: channelid }; // 查询字段集
     // console.log(setHref, 'setHref');
-    const updatefields = {
+    const updatefields: Ichannel["fields"] = {
       // 更新字段
       channelSiteId: siteid,
       channelName: name,
@@ -241,7 +249,7 @@ export default class ChannelService extends Service {
     } = ctx.request.body;
     const createDate = moment().valueOf();
     const updateDate = createDate;
-    const savefields = {
+    const savefields: Ichannel["fields"] = {
       // 添加字段
       channelSiteId: siteid,
       channelName: name,
@@ -288,7 +296,7 @@ export default class ChannelService extends Service {
     };
     const sort = { updateDate: -1 }; // 排序 升序: 1 降序: -1
 
-    const csid = [];
+    const csid: Ishare["csid"] = [];
 
     await Channel.where(filters)
       .find(fields)
@@ -341,8 +349,8 @@ export default class ChannelService extends Service {
     const fields = {}; // 查询字段集
     const filters = {}; // 筛选字段集
     const sort = { channelId: -1 }; // 排序 升序: 1 降序: -1
-    const csid = [];
-    const resultArr = [];
+    const csid: Ishare["csid"] = [];
+    const resultArr: Ishare["arr"] = [];
 
     await Channel.where(filters)
       .find(fields)
@@ -358,7 +366,16 @@ export default class ChannelService extends Service {
               csid.concat(item.channelSiteId.split(",")).indexOf(siteId) !== -1
           );
           // 获取所有栏目隐射表
-          for (let i = 0; i < arr.length; i += 1) {
+          // for (let i = 0; i < arr.length; i += 1) {
+          //   if (arr[i].channelStatus !== 0) {
+          //     resultArr.push({
+          //       channelid: arr[i]._id,
+          //       name: arr[i].channelName,
+          //       path: arr[i].channelPath
+          //     });
+          //   }
+          // }
+          for (let i in arr) {
             if (arr[i].channelStatus !== 0) {
               resultArr.push({
                 channelid: arr[i]._id,

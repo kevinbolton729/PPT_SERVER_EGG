@@ -1,8 +1,65 @@
 declare module "egg" {
+  interface Context {
+    request: {
+      token: {
+        code: string | number;
+        message: string;
+        data: string;
+      };
+      url: string;
+      body: any;
+    };
+    req: {
+      file: { filename: string };
+      files: any[];
+      body: any;
+    };
+  }
   interface Ihelper {
     result: {
-      data: any[] | {};
+      data: any | null;
       message: string;
+    };
+    formatError: {
+      errorStatus: boolean;
+      message: string | boolean;
+    };
+  }
+  interface Ishare {
+    csid: string[];
+    arr: any[];
+    fields: {
+      _id?: string;
+    };
+  }
+  interface Iarticle {
+    fields: {
+      articleSiteId: string;
+      articleTitle?: string;
+      articleSubtitle?: string;
+      articleChannel?: string;
+      articleAuthor?: string;
+      articleSource?: string;
+      articleContent?: string;
+      articleParams?: string;
+      articleStatus?: number;
+      likeNums?: string | number;
+      thumb?: string;
+      createDate?: string | number;
+      updateDate?: string | number;
+    };
+  }
+  interface Ichannel {
+    fields: {
+      channelSiteId: string;
+      channelName?: string;
+      channelText?: string;
+      channelHref?: string;
+      channelStatus?: number;
+      isHref?: string | number;
+      channelImage?: string;
+      createDate?: string | number;
+      updateDate?: string | number;
     };
   }
 }

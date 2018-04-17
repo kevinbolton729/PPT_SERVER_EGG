@@ -6,7 +6,7 @@
  */
 "use strict";
 
-import { Service } from "egg";
+import { Ishare, Service } from "egg";
 const moment = require("moment");
 
 // 常量
@@ -103,7 +103,7 @@ export default class SiteService extends Service {
 
     // 执行 model
     const { Site } = ctx.model;
-    const arr = [];
+    const arr: Ishare["arr"] = [];
     const fields = {}; // 查询字段集
     const filters = {}; // 筛选字段集
     const sort = { createDate: -1 }; // 排序 升序: 1 降序: -1
@@ -117,7 +117,15 @@ export default class SiteService extends Service {
           result.data = formatError();
         } else {
           // 获取所有站点隐射表
-          for (let i = 0; i < doc.length; i += 1) {
+          // for (let i = 0; i < doc.length; i += 1) {
+          //   if (doc[i].siteStatus !== 0) {
+          //     arr.push({
+          //       siteid: doc[i]._id,
+          //       name: doc[i].siteName
+          //     });
+          //   }
+          // }
+          for (let i in doc) {
             if (doc[i].siteStatus !== 0) {
               arr.push({
                 siteid: doc[i]._id,

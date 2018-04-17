@@ -6,7 +6,7 @@
  */
 "use strict";
 
-import { Service } from "egg";
+import { Iarticle, Ishare, Service } from "egg";
 
 // 第三方库类
 const moment = require("moment");
@@ -48,7 +48,7 @@ export default class ArticleService extends Service {
       articleStatus: 1
     };
     const sort = { updateDate: -1 }; // 排序 升序: 1 降序: -1
-    const csid = [];
+    const csid: Ishare["csid"] = [];
 
     await Article.where(filters)
       .find(fields)
@@ -110,7 +110,7 @@ export default class ArticleService extends Service {
       articleStatus: 1
     };
     const sort = { articleId: -1 }; // 排序 升序: 1 降序: -1
-    const csid = [];
+    const csid: Ishare["csid"] = [];
 
     await Article.where(filters)
       .find(fields)
@@ -171,7 +171,7 @@ export default class ArticleService extends Service {
       articleStatus: 1
     };
     const sort = { articleId: -1 }; // 排序 升序: 1 降序: -1'
-    const csid = [];
+    const csid: Ishare["csid"] = [];
 
     await Article.where(filters)
       .find(fields)
@@ -231,7 +231,7 @@ export default class ArticleService extends Service {
 
     // 执行 model
     const { Article } = ctx.model;
-    const arr = [];
+    const arr: Ishare["arr"] = [];
     const fields = {}; // 查询字段集
     const filters = {}; // 筛选字段集
     const sort = { articleId: -1 }; // 排序 升序: 1 降序: -1
@@ -245,7 +245,15 @@ export default class ArticleService extends Service {
           result.data = formatError();
         } else {
           // 获取所有文章隐射表
-          for (let i = 0; i < doc.length; i += 1) {
+          // for (let i = 0; i < doc.length; i += 1) {
+          //   if (doc[i].articleStatus !== 0) {
+          //     arr.push({
+          //       articleid: doc[i]._id,
+          //       title: doc[i].articleTitle
+          //     });
+          //   }
+          // }
+          for (let i in doc) {
             if (doc[i].articleStatus !== 0) {
               arr.push({
                 articleid: doc[i]._id,
@@ -325,10 +333,16 @@ export default class ArticleService extends Service {
     } = ctx.request.body;
     let newThumb = thumb;
     if (!isUploadThumbed) {
-      for (let i = 0; i < content.length; i += 1) {
-        const { image } = content[i].insert;
-        if (image) {
-          newThumb = thumbImage(image);
+      // for (let i = 0; i < content.length; i += 1) {
+      //   const { image } = content[i].insert;
+      //   if (image) {
+      //     newThumb = thumbImage(image);
+      //     break;
+      //   }
+      // }
+      for (let i in content) {
+        if (content[i].insert.image) {
+          newThumb = thumbImage(content[i].insert.image);
           break;
         }
       }
@@ -336,7 +350,7 @@ export default class ArticleService extends Service {
 
     // console.log(JSON.stringify(content), 'edit content');
     const fields = { _id: articleid }; // 查询字段集
-    const updatefields = {
+    const updatefields: Iarticle["fields"] = {
       // 更新字段
       articleSiteId: siteid,
       articleTitle: title,
@@ -395,10 +409,16 @@ export default class ArticleService extends Service {
     } = ctx.request.body;
     let newThumb = thumb;
     if (!newThumb) {
-      for (let i = 0; i < content.length; i += 1) {
-        const { image } = content[i].insert;
-        if (image) {
-          newThumb = thumbImage(image);
+      // for (let i = 0; i < content.length; i += 1) {
+      //   const { image } = content[i].insert;
+      //   if (image) {
+      //     newThumb = thumbImage(image);
+      //     break;
+      //   }
+      // }
+      for (let i in content) {
+        if (content[i].insert.image) {
+          newThumb = thumbImage(content[i].insert.image);
           break;
         }
       }
@@ -407,7 +427,7 @@ export default class ArticleService extends Service {
     // console.log(JSON.stringify(content), 'add content');
     const createDate = moment().valueOf();
     const updateDate = createDate;
-    const savefields = {
+    const savefields: Iarticle["fields"] = {
       // 添加字段
       articleSiteId: siteid,
       articleTitle: title,
@@ -508,7 +528,7 @@ export default class ArticleService extends Service {
     const { Article } = ctx.model;
     const { query } = ctx.request;
     // 查询字段集
-    const fields = {
+    const fields: Iarticle["fields"] = {
       articleSiteId: query.sid || "59607e3c682e090ca074ecfd",
       articleChannel: query.id
     };
@@ -610,5 +630,3 @@ export default class ArticleService extends Service {
     return result;
   }
 }
-
-module.exports = ArticleService;

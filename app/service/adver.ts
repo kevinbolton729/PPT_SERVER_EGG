@@ -64,8 +64,8 @@ export default class AdverService extends Service {
     const { ctx } = this;
 
     // helper 函数
-    const result = helper.result();
-    const { formatError } = helper;
+    const result = ctx.helper.result();
+    const { formatError } = ctx.helper;
 
     // 执行 model
     const { Adv } = ctx.model;

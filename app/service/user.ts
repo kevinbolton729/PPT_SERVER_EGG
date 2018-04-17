@@ -6,7 +6,7 @@
  */
 "use strict";
 
-import { Service } from "egg";
+import { Ishare, Service } from "egg";
 const moment = require("moment");
 
 // 常量
@@ -39,7 +39,7 @@ export default class UserService extends Service {
     // 执行 model
     const { User } = ctx.model;
 
-    const fields = {}; // 查询字段集
+    const fields: Ishare["fields"] = {}; // 查询字段集
     const filters = {}; // 筛选字段集
     const sort = { uid: -1 }; // 排序 升序: 1 降序: -1
 
@@ -80,13 +80,13 @@ export default class UserService extends Service {
 
     // 执行 model
     const { User } = ctx.model;
-    const fields = {}; // 查询字段集
+    const fields: Ishare["fields"] = {}; // 查询字段集
 
     // 获取解析后的token信息
     const { token } = ctx.request;
     // console.log(token, 'token');
 
-    fields._id = token.data;
+    fields._id = token && token.data;
 
     await User.findOne(fields).exec((err, doc) => {
       if (err) {
@@ -194,7 +194,7 @@ export default class UserService extends Service {
 
     // 执行 model
     const { User } = ctx.model;
-    const fields = {}; // 查询字段集
+    const fields: Ishare["fields"] = {}; // 查询字段集
     const updatefields = {
       // 更新字段
       pwd: setHmac(newpwd),
@@ -202,7 +202,7 @@ export default class UserService extends Service {
     };
     // 获取解析后的token信息
     const { token } = ctx.request;
-    fields._id = token.data;
+    fields._id = token && token.data;
 
     if (!oldpwd || !newpwd) {
       result.message = UPDATEPWDINPUTPWD;
@@ -257,7 +257,7 @@ export default class UserService extends Service {
 
     // 执行 model
     const { User } = ctx.model;
-    const fields = {}; // 查询字段集
+    const fields: Ishare["fields"] = {}; // 查询字段集
     const updatefields = {
       // 更新字段
       nickname,
@@ -268,7 +268,7 @@ export default class UserService extends Service {
     };
     // 获取解析后的token信息
     const { token } = ctx.request;
-    fields._id = token.data;
+    fields._id = token && token.data;
 
     // 执行修改用户登录密码
     await User.where(fields)

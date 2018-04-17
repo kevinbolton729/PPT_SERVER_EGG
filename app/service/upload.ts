@@ -6,7 +6,7 @@
  */
 "use strict";
 
-import { Service } from "egg";
+import { Ishare, Service } from "egg";
 
 // 第三方库类
 const moment = require("moment");
@@ -37,7 +37,7 @@ export default class UploadService extends Service {
 
     // 执行 model
     const { User } = ctx.model;
-    const fields = {}; // 查询字段集
+    const fields: Ishare["fields"] = {}; // 查询字段集
     const updatefields = {
       // 更新字段
       portrait: url,

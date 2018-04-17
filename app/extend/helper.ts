@@ -36,7 +36,9 @@ const helper = {
   },
   // 获取并处理响应的json数据
   // 输出错误格式
-  formatError: (message: string | boolean = false) => ({
+  formatError: (
+    message: Ihelper["formatError"]["message"] = false
+  ): Ihelper["formatError"] => ({
     errorStatus: true,
     message
   }),
@@ -70,7 +72,7 @@ const helper = {
   },
   // 压缩图片
   // options = { maxWidth, maxHeight, quality = 90, ratio = 3/4 }
-  compressImage(image, options) {
+  compressImage(image: string, options?: any): void {
     // 图片宽和高的最大值
     const maxWidth = (options && options.maxWidth) || IMAGE_MAX_WIDTH;
     const maxHeight = (options && options.maxHeight) || IMAGE_MAX_HEIGHT;
@@ -79,7 +81,10 @@ const helper = {
     // 图片尺寸
     const defaultSize = { width: 0, height: 0 };
     // 存储处理后图片尺寸的width和height
-    const resize = {};
+    const resize: { width: number; height: number } = {
+      width: 0,
+      height: 0
+    };
 
     // 获取图片
     const newImageUrl = `${UPLOADURLPREFIX}/public${image}`;
@@ -111,7 +116,7 @@ const helper = {
         try {
           handle
             .resize(
-              ratio > 1 ? resize.weight : null,
+              ratio > 1 ? resize.height : null,
               ratio > 1 ? null : resize.height
             )
             .strip() // 类似noProfile() 删除用户配置文件
@@ -137,7 +142,10 @@ const helper = {
     // 图片尺寸
     const defaultSize = { width: 0, height: 0 };
     // 存储处理后图片尺寸的width和height
-    const resize = {};
+    const resize: { width: number; height: number } = {
+      width: 0,
+      height: 0
+    };
 
     // 获取图片
     const PREFIX = `${UPLOADURLPREFIX}/public`;
@@ -170,7 +178,7 @@ const helper = {
         try {
           handle
             .resize(
-              ratio > 1 ? resize.weight : null,
+              ratio > 1 ? resize.height : null,
               ratio > 1 ? null : resize.height
             )
             .strip() // 类似noProfile() 删除用户配置文件

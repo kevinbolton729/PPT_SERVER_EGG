@@ -25,7 +25,7 @@ function noVerifyToken(url) {
   if (url === "/") return true;
   // 白名单（白名单内的请求地址不需验证）
   const ignores = ["/loginon", "/register", "/public/", "/front/"];
-  const result = ignores.reduce((arr, current) => {
+  const result = ignores.reduce((arr: any[], current) => {
     if (url.indexOf(current) !== -1) {
       arr.push(current);
     }
@@ -37,7 +37,7 @@ function noVerifyToken(url) {
 
 // parse token (解析Token字符串)
 async function parseToken(tokenString) {
-  const result = { data: false };
+  const result: { data: any } = { data: null };
   const errorMessage = {
     "jwt expired": JWTEXPIRED,
     "jwt malformed": JWTMALFORMED,
