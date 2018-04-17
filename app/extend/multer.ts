@@ -25,20 +25,22 @@ const uploadDir = (dir, flag) => {
 };
 
 // 配置
-const storageBase = (
+const storageBase: (dir?: string, options?: any) => any = (
   dir = "portrait",
   options = { flag: "images", isThumb: false }
 ) =>
   multer.diskStorage({
     // 文件保存路径
     destination(req, file, cb) {
-      // console.log(file, 'destination file');
+      console.log(req);
+      console.log(file);
       // 生成上传目录
       cb(null, uploadDir(dir, options.flag || "images"));
     },
     // 修改文件名称
     filename(req, file, cb) {
-      // console.log(file, 'filename file');
+      console.log(req);
+      // console.log(file);
       const fileFormat = file.mimetype.split("/");
       cb(
         null,

@@ -8,6 +8,7 @@ declare module "egg" {
       };
       url: string;
       body: any;
+      query: any;
     };
     req: {
       file: { filename: string };

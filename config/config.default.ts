@@ -6,6 +6,10 @@ export type DefaultConfig = PowerPartial<EggAppConfig & BizConfig>;
 // app special config scheme
 export interface BizConfig {
   sourceUrl: string;
+  gzip: {
+    threshold: number;
+    enable: boolean;
+  };
 }
 
 export default (appInfo: EggAppConfig) => {

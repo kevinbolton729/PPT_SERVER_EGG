@@ -7,12 +7,13 @@
 "use strict";
 
 import { Context } from "egg";
+import { BizConfig } from "../../config/config.default";
 
 const isJSON = require("koa-is-json");
 const zlib = require("zlib");
 
-export default options => {
-  return async function gzip(ctx: Context, next: any) {
+export default function gzip(options: BizConfig["gzip"]) {
+  return async (ctx: Context, next: any) => {
     await next();
 
     // 后续中间件执行完成后将响应体转换成 gzip
@@ -36,4 +37,4 @@ export default options => {
     ctx.body = stream;
     ctx.set("Content-Encoding", "gzip");
   };
-};
+}

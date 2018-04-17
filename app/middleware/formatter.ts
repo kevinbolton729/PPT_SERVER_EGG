@@ -39,8 +39,8 @@ const parseResJson = result => {
   );
 };
 
-export default () => {
-  return async function formatter(ctx: Context, next: any) {
+export default function formatter() {
+  return async (ctx: Context, next: any) => {
     await next();
 
     const { url } = ctx.request;
@@ -56,4 +56,4 @@ export default () => {
     // 解析并格式化响应的数据
     ctx.body = await parseResJson(body);
   };
-};
+}

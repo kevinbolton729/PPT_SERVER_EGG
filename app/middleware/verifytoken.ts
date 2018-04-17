@@ -18,7 +18,8 @@ const {
   JWTINVALIDSIGNATURE
 } = require("../common/consts");
 // 方法
-const { verifyToken } = require("../extend/helper");
+import helper from "../extend/helper";
+const { verifyToken } = helper;
 
 // 验证token的白名单，名单内的不需验证
 function noVerifyToken(url) {
@@ -75,8 +76,8 @@ async function parseToken(tokenString) {
   return result.data;
 }
 
-export default () => {
-  return async function verifytoken(ctx: Context, next: any) {
+export default function verifytoken() {
+  return async (ctx: Context, next: any) => {
     // const { headers, url } = ctx.request;
     // const { authorization } = headers;
     const { cookies, request } = ctx;
@@ -120,4 +121,4 @@ export default () => {
       await next();
     }
   };
-};
+}
