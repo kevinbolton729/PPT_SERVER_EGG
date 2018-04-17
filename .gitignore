@@ -5,8 +5,10 @@ coverage/
 .idea/
 run/
 logs/
+public/
 .DS_Store
 .vscode
+*.log
 *.swp
 *.lock
 *.js
