@@ -22,7 +22,7 @@
     "no-var-requires": [false],
     "curly": [false],
     "prefer-const": [false],
-    "no-shadowed-variable": [false],
-    "no-unused-variable": [true, { "ignore-pattern": "^_" }]
+    "no-shadowed-variable": [false]
+    // "no-unused-variable": [true, { "ignore-pattern": "^_" }]
   }
 }
