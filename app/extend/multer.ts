@@ -31,16 +31,16 @@ const storageBase: (dir?: string, options?: any) => any = (
 ) =>
   multer.diskStorage({
     // 文件保存路径
-    destination(req, file, cb) {
-      console.log(req);
-      console.log(file);
+    destination(_, __, cb) {
+      // console.log(typeof req, "req destination");
+      // console.log(typeof file, "file destination");
       // 生成上传目录
       cb(null, uploadDir(dir, options.flag || "images"));
     },
     // 修改文件名称
-    filename(req, file, cb) {
-      console.log(req);
-      // console.log(file);
+    filename(_, file, cb) {
+      // console.log(typeof req, "req filename");
+      // console.log(typeof file, "file filename");
       const fileFormat = file.mimetype.split("/");
       cb(
         null,
