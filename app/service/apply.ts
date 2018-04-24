@@ -107,7 +107,7 @@ export default class ApplyService extends Service {
 
     if (!fetchAdd) {
       result.message = APPLYADDFAIL;
-      result.data = formatError(result.message);
+      result.data = formatError();
     } else {
       result.message = APPLYADDSUCCESS;
       result.data = [];

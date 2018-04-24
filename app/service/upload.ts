@@ -2,7 +2,7 @@
  * @Author: Kevin Bolton
  * @Date: 2018-02-01 20:46:08
  * @Last Modified by: Kevin Bolton
- * @Last Modified time: 2018-04-17 13:42:41
+ * @Last Modified time: 2018-04-24 21:28:28
  */
 "use strict";
 
@@ -56,7 +56,7 @@ export default class UploadService extends Service {
         } else {
           if (doc.nModified === 0) {
             result.message = UPDATEFAILTURE;
-            result.data = formatError(result.message);
+            result.data = formatError();
           } else {
             result.message = UPDATESUCCESS;
             result.data = [];
@@ -190,7 +190,7 @@ export default class UploadService extends Service {
         } else {
           if (doc.nModified === 0) {
             result.message = UPDATEFAILTURE;
-            result.data = formatError(result.message);
+            result.data = formatError();
           } else {
             result.message = UPDATESUCCESS;
             result.data = [{ url }];
@@ -234,7 +234,7 @@ export default class UploadService extends Service {
         } else {
           if (doc.nModified === 0) {
             result.message = UPDATEFAILTURE;
-            result.data = formatError(result.message);
+            result.data = formatError();
           } else {
             result.message = UPDATESUCCESS;
             result.data = [{ url }];
@@ -280,7 +280,7 @@ export default class UploadService extends Service {
         } else {
           if (doc.nModified === 0) {
             result.message = UPDATEFAILTURE;
-            result.data = formatError(result.message);
+            result.data = formatError();
           } else {
             result.message = UPDATESUCCESS;
             result.data = [{ url }];

@@ -2,7 +2,7 @@
  * @Author: Kevin Bolton
  * @Date: 2018-02-09 11:47:36
  * @Last Modified by: Kevin Bolton
- * @Last Modified time: 2018-04-12 00:22:59
+ * @Last Modified time: 2018-04-24 20:35:49
  */
 "use strict";
 
@@ -100,18 +100,18 @@ export default function verifytoken() {
     const result = ctx.helper.result();
     const { formatError } = ctx.helper;
     // console.log(authorization, 'authorization');
-    // console.log(GETCOOKIES, 'GETCOOKIES');
+    // console.log(GETCOOKIES, "GETCOOKIES");
     const token = await parseToken(`Bearer ${GETCOOKIES}`);
 
     // token不存在
     if (!token) {
       result.message = TOKENERROR;
-      result.data = await formatError(result.message);
+      result.data = await formatError();
     }
     // token验证错误
     if (token.code === 0) {
       result.message = token.message;
-      result.data = await formatError(result.message);
+      result.data = await formatError();
     }
 
     if (result.data.errorStatus) {

@@ -23,7 +23,6 @@ declare module "egg" {
     };
     formatError: {
       errorStatus: boolean;
-      message: string | boolean;
     };
   }
   interface Ishare {

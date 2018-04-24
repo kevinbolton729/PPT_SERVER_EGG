@@ -2,7 +2,7 @@
  * @Author: Kevin Bolton
  * @Date: 2018-02-01 20:46:08
  * @Last Modified by: Kevin Bolton
- * @Last Modified time: 2018-04-17 13:29:17
+ * @Last Modified time: 2018-04-24 21:26:56
  */
 "use strict";
 
@@ -208,7 +208,7 @@ export default class BrandService extends Service {
 
     if (!fetchAdd) {
       result.message = GLOBALADDFAIL;
-      result.data = formatError(result.message);
+      result.data = formatError();
     } else {
       result.message = GLOBALADDSUCCESS;
       result.data = [];

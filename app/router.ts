@@ -49,6 +49,8 @@ export default (app: Application) => {
   router.get("/api/server/currentUser", user.getCurrentUser);
   // -- 登录用户 loginon
   router.post("/api/server/loginon", user.loginOn);
+  // -- 安全退出 loginout
+  router.post("/api/server/loginout", user.loginOut);
   // -- 更新登录密码
   router.post("/api/server/updatepwd", user.updateLoginpwd);
   // -- 更新个人信息

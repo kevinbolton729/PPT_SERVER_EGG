@@ -2,7 +2,7 @@
  * @Author: Kevin Bolton
  * @Date: 2018-02-01 20:46:08
  * @Last Modified by: Kevin Bolton
- * @Last Modified time: 2018-04-17 13:39:27
+ * @Last Modified time: 2018-04-24 21:27:37
  */
 "use strict";
 
@@ -168,7 +168,7 @@ export default class SiteService extends Service {
         } else {
           if (doc.nModified === 0) {
             result.message = SITEDELFAIL;
-            result.data = formatError(result.message);
+            result.data = formatError();
           }
 
           result.message = SITEDELSUCCESS;
@@ -210,7 +210,7 @@ export default class SiteService extends Service {
         } else {
           if (doc.nModified === 0) {
             result.message = SITEEDITFAIL;
-            result.data = formatError(result.message);
+            result.data = formatError();
           }
 
           result.message = SITEEDITSUCCESS;
@@ -250,7 +250,7 @@ export default class SiteService extends Service {
 
     if (!fetchAdd) {
       result.message = SITEADDFAIL;
-      result.data = formatError(result.message);
+      result.data = formatError();
     } else {
       result.message = SITEADDSUCCESS;
       result.data = [];

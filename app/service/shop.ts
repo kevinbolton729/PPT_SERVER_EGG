@@ -2,7 +2,7 @@
  * @Author: Kevin Bolton
  * @Date: 2018-02-01 20:46:08
  * @Last Modified by: Kevin Bolton
- * @Last Modified time: 2018-04-17 13:37:40
+ * @Last Modified time: 2018-04-24 21:27:33
  */
 "use strict";
 
@@ -200,7 +200,7 @@ export default class ShopService extends Service {
 
     if (!fetchAdd) {
       result.message = GLOBALADDFAIL;
-      result.data = formatError(result.message);
+      result.data = formatError();
     } else {
       result.message = GLOBALADDSUCCESS;
       result.data = [];

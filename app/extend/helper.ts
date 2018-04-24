@@ -2,7 +2,7 @@
  * @Author: Kevin Bolton
  * @Date: 2018-02-01 19:55:07
  * @Last Modified by: Kevin Bolton
- * @Last Modified time: 2018-04-17 13:17:03
+ * @Last Modified time: 2018-04-24 21:32:12
  */
 "use strict";
 
@@ -36,11 +36,8 @@ const helper = {
   },
   // 获取并处理响应的json数据
   // 输出错误格式
-  formatError: (
-    message: Ihelper["formatError"]["message"] = false
-  ): Ihelper["formatError"] => ({
+  formatError: (): Ihelper["formatError"] => ({
     errorStatus: true,
-    message
   }),
   // 设置密码HAMC值
   setHmac: str => {

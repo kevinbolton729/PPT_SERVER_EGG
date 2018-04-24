@@ -2,7 +2,7 @@
  * @Author: Kevin Bolton
  * @Date: 2018-02-01 20:46:08
  * @Last Modified by: Kevin Bolton
- * @Last Modified time: 2018-04-17 13:44:04
+ * @Last Modified time: 2018-04-24 21:29:41
  */
 "use strict";
 
@@ -108,7 +108,7 @@ export default class UserService extends Service {
         ];
       } else {
         result.message = MSGETDATANODATA;
-        result.data = formatError(result.message);
+        result.data = formatError();
       }
     });
 
@@ -165,18 +165,17 @@ export default class UserService extends Service {
           };
           cookies.set(COOKIESKEY, token, SETCOOKIESOPTS);
           // console.log(token, 'token');
-          // console.log(cookies, 'login cookies');
 
           result.message = MSGLOGINSUCCESS;
           result.data = [];
         } else {
           result.message = MSGLOGINFAIL;
-          result.data = formatError(result.message);
+          result.data = formatError();
         }
       });
     } else {
       result.message = MSGLOGINNOINPUT;
-      result.data = await formatError(result.message);
+      result.data = await formatError();
     }
 
     // console.log(result, 'result');
@@ -206,12 +205,12 @@ export default class UserService extends Service {
 
     if (!oldpwd || !newpwd) {
       result.message = UPDATEPWDINPUTPWD;
-      result.data = await formatError(result.message);
+      result.data = await formatError();
       return result;
     }
     if (oldpwd === newpwd) {
       result.message = UPDATEOLDNEWERROR;
-      result.data = await formatError(result.message);
+      result.data = await formatError();
       return result;
     }
 
@@ -219,7 +218,7 @@ export default class UserService extends Service {
     await User.findOne(fields).exec((err, doc) => {
       if (err || !doc || doc.pwd !== setHmac(oldpwd)) {
         result.message = MSGLOGINFAIL;
-        result.data = formatError(result.message);
+        result.data = formatError();
       } else {
         isFetchUpdate.fetch = true;
       }
@@ -235,7 +234,7 @@ export default class UserService extends Service {
         } else {
           if (doc.nModified === 0) {
             result.message = UPDATEPWDERR;
-            result.data = formatError(result.message);
+            result.data = formatError();
           } else {
             result.message = UPDATEPWDSUCCESS;
             result.data = [];
@@ -279,7 +278,7 @@ export default class UserService extends Service {
         } else {
           if (doc.nModified === 0) {
             result.message = UPDATEFAILTURE;
-            result.data = formatError(result.message);
+            result.data = formatError();
           } else {
             result.message = UPDATESUCCESS;
             result.data = [];
