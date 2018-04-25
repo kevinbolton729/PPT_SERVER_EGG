@@ -6,9 +6,9 @@
  */
 "use strict";
 
-import { Controller } from "egg";
+import { Controller, Icookie } from "egg";
 // 常量
-const { COOKIESKEY } = require("../common/consts");
+const { COOKIESKEY, MSGLOGINOUTSUCCESS } = require("../common/consts");
 
 export default class UserController extends Controller {
   // 获取userLists
@@ -35,9 +35,13 @@ export default class UserController extends Controller {
   // 退出
   public async loginOut() {
     const { ctx } = this;
+    const result = ctx.helper.result();
+    result.message = MSGLOGINOUTSUCCESS;
+    result.data = [];
 
-    (ctx.cookies as { set: any }).set(COOKIESKEY, null);
-    ctx.body = { message: "已安全退出", data: [] };
+    (ctx.cookies as Icookie).set(COOKIESKEY, null);
+    ctx.status = 204;
+    ctx.body = result;
   }
   // 修改登录密码
   public async updateLoginpwd() {

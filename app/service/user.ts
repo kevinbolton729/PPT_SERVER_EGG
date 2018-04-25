@@ -2,7 +2,7 @@
  * @Author: Kevin Bolton
  * @Date: 2018-02-01 20:46:08
  * @Last Modified by: Kevin Bolton
- * @Last Modified time: 2018-04-24 21:29:41
+ * @Last Modified time: 2018-04-25 08:56:53
  */
 "use strict";
 
@@ -158,7 +158,7 @@ export default class UserService extends Service {
 
           // 生成token的cookies
           const SETCOOKIESOPTS = {
-            maxAge: 1000 * 60 * 60 * 24 * 30,
+            maxAge: 1000 * EXPIRESIN,
             overwrite: true,
             signed: true,
             encrypt: true

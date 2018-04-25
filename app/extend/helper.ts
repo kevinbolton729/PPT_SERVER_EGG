@@ -37,7 +37,7 @@ const helper = {
   // 获取并处理响应的json数据
   // 输出错误格式
   formatError: (): Ihelper["formatError"] => ({
-    errorStatus: true,
+    errorStatus: true
   }),
   // 设置密码HAMC值
   setHmac: str => {
