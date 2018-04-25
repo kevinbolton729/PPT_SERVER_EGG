@@ -2,7 +2,7 @@
  * @Author: Kevin Bolton
  * @Date: 2018-02-01 20:30:20
  * @Last Modified by: Kevin Bolton
- * @Last Modified time: 2018-04-24 21:02:09
+ * @Last Modified time: 2018-04-25 09:12:09
  */
 "use strict";
 
@@ -40,7 +40,6 @@ export default class UserController extends Controller {
     result.data = [];
 
     (ctx.cookies as Icookie).set(COOKIESKEY, null);
-    ctx.status = 204;
     ctx.body = result;
   }
   // 修改登录密码
