@@ -18,7 +18,7 @@ declare module "egg" {
   }
   interface Ihelper {
     result: {
-      data: any | null;
+      data: string | number | any[] | {} | null;
       message: string;
     };
     formatError: {
@@ -61,5 +61,8 @@ declare module "egg" {
       createDate?: string | number;
       updateDate?: string | number;
     };
+  }
+  interface Icookie {
+    set: (key: string, val?: any, opts?: any) => void;
   }
 }
