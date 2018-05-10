@@ -4,6 +4,9 @@
 import ExtendObject from '../../../app/extend/helper';
 declare module 'egg' {
   interface IHelper {
+    find: typeof ExtendObject.find;
+    findOne: typeof ExtendObject.findOne;
+    update: typeof ExtendObject.update;
     result: typeof ExtendObject.result;
     formatError: typeof ExtendObject.formatError;
     setHmac: typeof ExtendObject.setHmac;

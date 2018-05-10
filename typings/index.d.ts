@@ -17,8 +17,9 @@ declare module "egg" {
     };
   }
   interface Ihelper {
+    findOne: any;
     result: {
-      data: string | number | any[] | {} | null;
+      data: any;
       message: string;
     };
     formatError: {

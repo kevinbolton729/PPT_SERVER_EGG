@@ -6,8 +6,6 @@
  */
 "use strict";
 
-import { Ihelper } from "egg";
-
 const crypto = require("crypto");
 const moment = require("moment");
 const jwt = require("jsonwebtoken");
@@ -27,16 +25,24 @@ const {
 } = require("../common/consts");
 
 const helper = {
+  // [CURD]
+  find: (model, { where, find, limit, sort }) =>
+    model
+      .where(where || {})
+      .find(find || {})
+      .limit(limit || 500)
+      .sort(sort || {}),
+  findOne: (model, { findOne }) => model.findOne(findOne || {}),
+  update: (model, { where, update }) => model.where(where || {}).update({ $set: update }),
+  // [CURD -- END]
   // 返回数据
-  result(): Ihelper["result"] {
-    return {
-      data: [],
-      message: ""
-    };
-  },
+  result: (): { data: any; message: string } => ({
+    data: [],
+    message: ""
+  }),
   // 获取并处理响应的json数据
   // 输出错误格式
-  formatError: (): Ihelper["formatError"] => ({
+  formatError: () => ({
     errorStatus: true
   }),
   // 设置密码HAMC值
